@@ -2,11 +2,19 @@ import { useState,useEffect } from 'react'
 import Scoreboard from './components/Scoreboard'
 import CardGrid from './components/CardGrid'
 
+function shuffle(cardData){
+    const newData=[...cardData]
+    for(let i=newData.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [newData[i],newData[j]]=[newData[j],newData[i]]
+    }
+    return newData
+}
 
 function App(){
     const [currentScore,setCurrentScore]=useState(0);
     const [bestScore,setBestScore]=useState(0);
-    const [clickedCards,SetClickedCards]=useState([]);
+    const [clickedCards,setClickedCards]=useState([]);
     const [cardData,setCardData]=useState([]);
     const [isLoading,setIsLoading]=useState(true);
     useEffect(()=>{
@@ -32,12 +40,13 @@ function App(){
                 setBestScore(currentScore)
             }
             setCurrentScore(0);
-            SetClickedCards([]);
+            setClickedCards([]);
         }
         else{
-        SetClickedCards([...clickedCards,cardId]);
+        setClickedCards([...clickedCards,cardId]);
         setCurrentScore(currentScore+1);
         }
+        setCardData(shuffle(cardData))
     }
     return(
         <div>

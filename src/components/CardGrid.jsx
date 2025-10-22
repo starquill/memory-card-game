@@ -3,7 +3,7 @@ function CardGrid({onCardClick,cardData}){
         <div className="card-gift">
         { cardData.map((card)=>(
             <div className="card" key={card.name} onClick={()=>onCardClick(card.name)}>
-                {card.name}
+               <p>{card.name}</p>
             </div>
         ))}
         </div>
