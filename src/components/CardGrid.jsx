@@ -1,7 +1,10 @@
-function CardGrid(){
+function CardGrid({onCardClick}){
     return(
         <div className="card-gift">
-            <p>Cards area</p>
+        <div className="card" onClick={onCardClick}>Card 1</div>
+        <div className="card" onClick={onCardClick}>Card 2</div>
+        <div className="card" onClick={onCardClick}>Card 3</div>
+        <div className="card" onClick={onCardClick}>Card 4</div>
         </div>
     )
 }

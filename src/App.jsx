@@ -6,11 +6,15 @@ import CardGrid from './components/CardGrid'
 function App(){
     const [currentScore,setCurrentScore]=useState(0);
     const [bestScore,setBestScore]=useState(0);
+
+    const handleCardClick=()=>{
+        setCurrentScore(currentScore+1);
+    }
     return(
         <div>
         <h1>Memory Card Game</h1>
         <Scoreboard currentScore={currentScore} bestScore={bestScore}/>
-        <CardGrid/>
+        <CardGrid onCardClick={handleCardClick}/>
         </div>
     )
 }
