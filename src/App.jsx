@@ -22,8 +22,17 @@ function App(){
             try{
             const response=await fetch('https://pokeapi.co/api/v2/pokemon?limit=12')
             const data=await response.json()
-            console.log(data.results)
-            setCardData(data.results)
+            const detailedPromises = data.results.map(async (pokemon)=>{
+                const detailedResponse=await fetch(pokemon.url);
+                return await detailedResponse.json()
+            })
+            const detailedData=await Promise.all(detailedPromises)
+            const processedData=detailedData.map((p)=>({
+                id:p.name,
+                name:p.name,
+                image:p.sprites.other['official-artwork'].front_default,
+            }))
+            setCardData(shuffle(processedData))
             }
             catch(error){
                 console.error('Error fetching data',error);

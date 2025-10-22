@@ -4,6 +4,7 @@ function CardGrid({onCardClick,cardData}){
         { cardData.map((card)=>(
             <div className="card" key={card.name} onClick={()=>onCardClick(card.name)}>
                <p>{card.name}</p>
+               <img src={card.image} alt={card.name} />
             </div>
         ))}
         </div>
