@@ -1,6 +1,6 @@
 function CardGrid({onCardClick,cardData}){
     return(
-        <div className="card-gift">
+        <div className="card-grid">
         { cardData.map((card)=>(
             <div className="card" key={card.name} onClick={()=>onCardClick(card.name)}>
                <p>{card.name}</p>

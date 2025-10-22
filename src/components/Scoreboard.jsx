@@ -1,8 +1,8 @@
 function Scoreboard(props){
     return(
         <div className="scoreboard">
-            <h2>Score:{props.currentScore}</h2>
-            <h2>Best Score:{props.bestScore}</h2>
+            <div className="current-score">Score: {props.currentScore}</div>
+            <div className="best-score">Best Score: {props.bestScore}</div>
         </div>
     )
 }

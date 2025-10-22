@@ -1,6 +1,7 @@
 import { useState,useEffect } from 'react'
 import Scoreboard from './components/Scoreboard'
 import CardGrid from './components/CardGrid'
+import './App.css';
 
 function shuffle(cardData){
     const newData=[...cardData]
@@ -58,13 +59,19 @@ function App(){
         setCardData(shuffle(cardData))
     }
     return(
-        <div>
-        <h1>Memory Card Game</h1>
-        <Scoreboard currentScore={currentScore} bestScore={bestScore}/>
-        { isLoading?(<p>loading...</p>):(
-        <CardGrid onCardClick={handleCardClick} cardData={cardData}/>)
-        }
+        <div className="app">
+        <div className="header">
+          <h1>Memory Card Game</h1>
+          <Scoreboard currentScore={currentScore} bestScore={bestScore} />
         </div>
+      
+        {isLoading ? (
+          <p className="loading-text">Loading Cards...</p>
+        ):(
+          <CardGrid onCardClick={handleCardClick} cardData={cardData} />
+        )}
+      </div>
+      
     )
 }
 
