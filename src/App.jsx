@@ -8,7 +8,24 @@ function App(){
     const [bestScore,setBestScore]=useState(0);
     const [clickedCards,SetClickedCards]=useState([]);
     const [cardData,setCardData]=useState([]);
-    const [isloading,SetIsLoading]=useState(true);
+    const [isLoading,setIsLoading]=useState(true);
+    useEffect(()=>{
+        const fetchData= async ()=>{
+            try{
+            const response=await fetch('https://pokeapi.co/api/v2/pokemon?limit=12')
+            const data=await response.json()
+            console.log(data.results)
+            setCardData(data.results)
+            }
+            catch(error){
+                console.error('Error fetching data',error);
+            }
+            finally{
+                setIsLoading(false);
+            }
+        }
+        fetchData()
+    },[])
     const handleCardClick=(cardId)=>{
         if(clickedCards.includes(cardId)){
             if(currentScore>bestScore){
@@ -26,7 +43,9 @@ function App(){
         <div>
         <h1>Memory Card Game</h1>
         <Scoreboard currentScore={currentScore} bestScore={bestScore}/>
-        <CardGrid onCardClick={handleCardClick}/>
+        { isLoading?(<p>loading...</p>):(
+        <CardGrid onCardClick={handleCardClick} cardData={cardData}/>)
+        }
         </div>
     )
 }
