@@ -1,10 +1,17 @@
 function CardGrid({onCardClick}){
+    const cards = [
+        {id:1,name:'bulbasaur'},
+        { id: 2, name: 'Charmander' },
+        { id: 3, name: 'Squirtle' },
+        { id: 4, name: 'Pikachu' },
+    ]
     return(
         <div className="card-gift">
-        <div className="card" onClick={onCardClick}>Card 1</div>
-        <div className="card" onClick={onCardClick}>Card 2</div>
-        <div className="card" onClick={onCardClick}>Card 3</div>
-        <div className="card" onClick={onCardClick}>Card 4</div>
+        { cards.map((card)=>(
+            <div className="card" key={card.id} onClick={()=>onCardClick(card.id)}>
+                {card.name}
+            </div>
+        ))}
         </div>
     )
 }

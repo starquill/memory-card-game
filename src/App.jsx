@@ -6,9 +6,19 @@ import CardGrid from './components/CardGrid'
 function App(){
     const [currentScore,setCurrentScore]=useState(0);
     const [bestScore,setBestScore]=useState(0);
-
-    const handleCardClick=()=>{
+    const [clickedCards,SetClickedCards]=useState([]);
+    const handleCardClick=(cardId)=>{
+        if(clickedCards.includes(cardId)){
+            if(currentScore>bestScore){
+                setBestScore(currentScore)
+            }
+            setCurrentScore(0);
+            SetClickedCards([]);
+        }
+        else{
+        SetClickedCards([...clickedCards,cardId]);
         setCurrentScore(currentScore+1);
+        }
     }
     return(
         <div>
